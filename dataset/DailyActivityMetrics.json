@@ -1,0 +1,24 @@
+{
+	"name": "DailyActivityMetrics",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobdatafault",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Daily activity metrics.csv",
+				"folderPath": "Eren Data/Daily activity metrics",
+				"container": "googlefitdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
