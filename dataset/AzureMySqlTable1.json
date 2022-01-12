@@ -9,7 +9,7 @@
 		"type": "AzureMySqlTable",
 		"schema": [
 			{
-				"name": "startTime",
+				"name": "Date",
 				"type": "date",
 				"precision": 0,
 				"scale": 0
@@ -51,8 +51,8 @@
 				"scale": 0
 			},
 			{
-				"name": "Max heart rate (bpm)",
-				"type": "int",
+				"name": "startTime",
+				"type": "time",
 				"precision": 0,
 				"scale": 0
 			},
@@ -111,7 +111,7 @@
 				"scale": 0
 			},
 			{
-				"name": "Average weight (kg)",
+				"name": "Max heart rate (bpm)",
 				"type": "int",
 				"precision": 0,
 				"scale": 0
@@ -190,6 +190,30 @@
 			},
 			{
 				"name": "Weight lifting duration (ms)",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "new_column",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "Average weight (kg)",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "UserId",
 				"type": "int",
 				"precision": 0,
 				"scale": 0
