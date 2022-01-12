@@ -1,0 +1,28 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DailyActivityMetricsTotal",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureMySqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "source(output(\n\t\tDate as string,\n\t\t{Move Minutes count} as string,\n\t\t{Calories (kcal)} as string,\n\t\t{Distance (m)} as string,\n\t\t{Heart Points} as string,\n\t\t{Heart Minutes} as string,\n\t\t{Average heart rate (bpm)} as string,\n\t\t{Max heart rate (bpm)} as string,\n\t\t{Min heart rate (bpm)} as string,\n\t\t{Low latitude (deg)} as string,\n\t\t{Low longitude (deg)} as string,\n\t\t{High latitude (deg)} as string,\n\t\t{High longitude (deg)} as string,\n\t\t{Average speed (m/s)} as string,\n\t\t{Max speed (m/s)} as string,\n\t\t{Min speed (m/s)} as string,\n\t\t{Step count} as string,\n\t\t{Average weight (kg)} as string,\n\t\t{Max weight (kg)} as string,\n\t\t{Min weight (kg)} as string,\n\t\t{Biking duration (ms)} as string,\n\t\t{Inactive duration (ms)} as string,\n\t\t{Walking duration (ms)} as string,\n\t\t{Running duration (ms)} as string,\n\t\t{Aerobics duration (ms)} as string,\n\t\t{Basketball duration (ms)} as string,\n\t\t{Circuit training duration (ms)} as string,\n\t\t{Treadmill running duration (ms)} as string,\n\t\t{Sleep duration (ms)} as string,\n\t\t{Strength training duration (ms)} as string,\n\t\t{Weight lifting duration (ms)} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tstartTime as date,\n\t\t{Move Minutes count} as integer,\n\t\t{Calories (kcal)} as decimal(10,0),\n\t\t{Distance (m)} as decimal(10,0),\n\t\t{Heart Points} as integer,\n\t\t{Heart Minutes} as integer,\n\t\t{Average heart rate (bpm)} as integer,\n\t\t{Max heart rate (bpm)} as integer,\n\t\t{Min heart rate (bpm)} as integer,\n\t\t{Low latitude (deg)} as decimal(10,0),\n\t\t{Low longitude (deg)} as decimal(10,0),\n\t\t{High latitude (deg)} as decimal(10,0),\n\t\t{High longitude (deg)} as decimal(10,0),\n\t\t{Average speed (m/s)} as decimal(10,0),\n\t\t{Max speed (m/s)} as decimal(10,0),\n\t\t{Min speed (m/s)} as decimal(10,0),\n\t\t{Step count} as integer,\n\t\t{Average weight (kg)} as integer,\n\t\t{Max weight (kg)} as integer,\n\t\t{Min weight (kg)} as integer,\n\t\t{Biking duration (ms)} as integer,\n\t\t{Inactive duration (ms)} as integer,\n\t\t{Walking duration (ms)} as integer,\n\t\t{Running duration (ms)} as integer,\n\t\t{Aerobics duration (ms)} as integer,\n\t\t{Basketball duration (ms)} as integer,\n\t\t{Circuit training duration (ms)} as integer,\n\t\t{Treadmill running duration (ms)} as integer,\n\t\t{Sleep duration (ms)} as integer,\n\t\t{Strength training duration (ms)} as integer,\n\t\t{Weight lifting duration (ms)} as integer\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+		}
+	}
+}
