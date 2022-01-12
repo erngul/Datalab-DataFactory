@@ -1,10 +1,6 @@
 {
 	"name": "DailyActivityMetrics",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "blobdatafault",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
