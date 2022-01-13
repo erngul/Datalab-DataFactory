@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "http://api.geonames.org/findNearbyJSON?",
+			"url": "http://api.geonames.org/findNearbyJSON",
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous"
 		}
