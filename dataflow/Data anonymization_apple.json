@@ -1,0 +1,48 @@
+{
+	"name": "Data anonymization_apple",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "applehealth_workout_routes",
+						"type": "DatasetReference"
+					},
+					"name": "source3"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureMySqlTable2",
+						"type": "DatasetReference"
+					},
+					"name": "ToDBAppleWorkoutRoutes"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DerivedColumn2"
+				},
+				{
+					"name": "Flatten1"
+				},
+				{
+					"name": "CountrCall2",
+					"linkedService": {
+						"referenceName": "RestService1",
+						"type": "LinkedServiceReference"
+					}
+				},
+				{
+					"name": "DerivedColumn3"
+				},
+				{
+					"name": "Select2"
+				}
+			],
+			"script": "source(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinferDriftedColumnTypes: true,\n\tignoreNoFilesFound: false,\n\tvalidationMode: 'none',\n\tnamespaces: true,\n\ttimestampFormats: ['yyyy-MM-dd\\'T\\'HH:mm:ss.SSS\\'Z\\''],\n\twildcardPaths:['apple_health_export/workout-routes/*.gpx']) ~> source3\nFlatten1 derive(UserId = 2,\n\t\tcoordinatelookupurl = \"/countryCodeJSON?lat=\" + toString(lat) + \" &lng=\" + toString(lon) + \"&username=errow01058\") ~> DerivedColumn2\nsource3 foldDown(unroll({http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}),\n\tmapColumn(\n\t\tlat = {http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}.{@lat},\n\t\tlon = {http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}.{@lon},\n\t\tvAcc = {http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}.{http://www.topografix.com/GPX/1/1,extensions}.{http://www.topografix.com/GPX/1/1,vAcc},\n\t\thAcc = {http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}.{http://www.topografix.com/GPX/1/1,extensions}.{http://www.topografix.com/GPX/1/1,hAcc},\n\t\tDateTime = {http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}.{http://www.topografix.com/GPX/1/1,time},\n\t\tSpeed = {http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}.{http://www.topografix.com/GPX/1/1,extensions}.{http://www.topografix.com/GPX/1/1,speed},\n\t\tCourse = {http://www.topografix.com/GPX/1/1,gpx}.{http://www.topografix.com/GPX/1/1,trk}.{http://www.topografix.com/GPX/1/1,trkseg}.{http://www.topografix.com/GPX/1/1,trkpt}.{http://www.topografix.com/GPX/1/1,extensions}.{http://www.topografix.com/GPX/1/1,course}\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Flatten1\nDerivedColumn2 call(mapColumn(\n\t\tcoordinatelookupurl\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\toutput(\n\t\theaders as [string,string],\n\t\tbody as (countryName as string)\n\t),\n\tallowSchemaDrift: true,\n\tstore: 'restservice',\n\tformat: 'rest',\n\ttimeout: 30,\n\trequestInterval: 100,\n\thttpMethod: 'GET',\n\trowRelativeUrl: 'coordinatelookupurl',\n\tskipRowRelativeUrl: true,\n\trequestFormat: ['type' -> 'json'],\n\tresponseFormat: ['type' -> 'json', 'documentForm' -> 'singleDocument']) ~> CountrCall2\nCountrCall2 derive(Country = body.countryName) ~> DerivedColumn3\nDerivedColumn3 select(mapColumn(\n\t\tvAcc,\n\t\thAcc,\n\t\tDateTime,\n\t\tSpeed,\n\t\tCourse,\n\t\tUserId,\n\t\tCountry\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select2\nSelect2 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tId as integer,\n\t\tUserId as integer,\n\t\tCountry as string,\n\t\tSpeed as decimal(10,0),\n\t\tCourse as decimal(10,0),\n\t\thAcc as decimal(10,0),\n\t\tvAcc as decimal(10,0),\n\t\tDateTime as timestamp\n\t),\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tmapColumn(\n\t\tUserId,\n\t\tCountry,\n\t\tSpeed,\n\t\tCourse,\n\t\thAcc,\n\t\tvAcc,\n\t\tDateTime\n\t)) ~> ToDBAppleWorkoutRoutes"
+		}
+	}
+}

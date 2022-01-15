@@ -1,5 +1,5 @@
 {
-	"name": "Data anonymization",
+	"name": "Data anonymization_total_google",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {

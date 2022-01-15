@@ -1,10 +1,6 @@
 {
-	"name": "AzureDB",
+	"name": "AzureDB_DailyActivityMetrics",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "AzureSqlDatabase1",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [],
