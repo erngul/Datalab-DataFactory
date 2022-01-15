@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "Eren Data/Daily activity metrics",
+				"folderPath": "Daily activity metrics",
 				"container": "googlefitdata"
 			},
 			"columnDelimiter": ",",
