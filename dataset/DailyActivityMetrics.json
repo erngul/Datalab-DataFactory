@@ -6,7 +6,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Daily activity metrics.csv",
 				"folderPath": "Eren Data/Daily activity metrics",
 				"container": "googlefitdata"
 			},
