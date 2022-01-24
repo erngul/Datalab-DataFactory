@@ -1,0 +1,148 @@
+{
+	"name": "DailyActivityMetrics",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Daily activity metrics",
+				"container": "googlefitdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Move Minutes count",
+				"type": "String"
+			},
+			{
+				"name": "Calories (kcal)",
+				"type": "String"
+			},
+			{
+				"name": "Distance (m)",
+				"type": "String"
+			},
+			{
+				"name": "Heart Points",
+				"type": "String"
+			},
+			{
+				"name": "Heart Minutes",
+				"type": "String"
+			},
+			{
+				"name": "Average heart rate (bpm)",
+				"type": "String"
+			},
+			{
+				"name": "Max heart rate (bpm)",
+				"type": "String"
+			},
+			{
+				"name": "Min heart rate (bpm)",
+				"type": "String"
+			},
+			{
+				"name": "Low latitude (deg)",
+				"type": "String"
+			},
+			{
+				"name": "Low longitude (deg)",
+				"type": "String"
+			},
+			{
+				"name": "High latitude (deg)",
+				"type": "String"
+			},
+			{
+				"name": "High longitude (deg)",
+				"type": "String"
+			},
+			{
+				"name": "Average speed (m/s)",
+				"type": "String"
+			},
+			{
+				"name": "Max speed (m/s)",
+				"type": "String"
+			},
+			{
+				"name": "Min speed (m/s)",
+				"type": "String"
+			},
+			{
+				"name": "Step count",
+				"type": "String"
+			},
+			{
+				"name": "Average weight (kg)",
+				"type": "String"
+			},
+			{
+				"name": "Max weight (kg)",
+				"type": "String"
+			},
+			{
+				"name": "Min weight (kg)",
+				"type": "String"
+			},
+			{
+				"name": "Biking duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Inactive duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Walking duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Running duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Aerobics duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Basketball duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Circuit training duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Treadmill running duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Sleep duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Strength training duration (ms)",
+				"type": "String"
+			},
+			{
+				"name": "Weight lifting duration (ms)",
+				"type": "String"
+			}
+		]
+	}
+}

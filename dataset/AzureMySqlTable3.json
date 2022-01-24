@@ -1,0 +1,136 @@
+{
+	"name": "AzureMySqlTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureMySql1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureMySqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "UserId",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "endTime",
+				"type": "time",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "MoveMinutesCount",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "CaloriesKcal",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "DistanceM",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "HeartPoints",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "HeartMinutes",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "startTime",
+				"type": "time",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "MaxHeartRateBPM",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "MinHeartRateBPM",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "AverageSpeedMS",
+				"type": "bigint",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "MaxSpeedMS",
+				"type": "bigint",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "MinSpeedMS",
+				"type": "bigint",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "StepCount",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "AveragreWeightKG",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "MaxWeightKG",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "MinWeightKG",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "WalkingDurationMS",
+				"type": "bigint",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "AverageHeartRateBPM",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "dailyactivitymetrics"
+		}
+	}
+}

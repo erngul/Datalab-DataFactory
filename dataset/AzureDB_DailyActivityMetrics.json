@@ -1,0 +1,12 @@
+{
+	"name": "AzureDB_DailyActivityMetrics",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DailyActivityMetrics"
+		}
+	}
+}
